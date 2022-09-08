@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
 
-function App() {
+
+import './App.css';
+import {  useDispatch } from 'react-redux'
+import { fetchPokemons } from './redux/actions/pokemons';
+
+
+function App( props ) {
+
+  const dispatch = useDispatch();
+  const [pokemons, setPokemons] = useState([]);
+
+
+  useEffect(() => {
+    if(pokemons.length === 0){
+      dispatch(fetchPokemons());
+      setPokemons([{}, {}]);
+    }
+  },[pokemons.length, dispatch])
+  
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Aprendiendo REDUX</h1>
     </div>
   );
 }
